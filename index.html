@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dondon Vauxhall - Quality Ingredients</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #F7F6F3;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Bar - Matching main site */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      pointer-events: none;
+      padding-top: 1rem;
+      transition: all 0.7s ease-out;
+    }
+
+    .navbar-container {
+      max-width: 1280px;
+      width: 90%;
+      margin: 0 auto;
+      position: relative;
+      pointer-events: auto;
+      border-radius: 9999px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      transition: all 0.7s ease-out;
+      border: 1px solid transparent;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .navbar-links a,
+    .navbar-links button {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: #262626;
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-links a:hover,
+    .navbar-links button:hover {
+      color: #f16e3a;
+    }
+
+    .navbar-logo {
+      position: absolute;
+      left: 50%;
+      width: 32px;
+      height: 32px;
+      border: 1px solid #262626;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.5s ease, transform 0.7s ease-out;
+      background: transparent;
+    }
+
+    .navbar-logo:hover {
+      border-color: #f16e3a;
+    }
+
+    .navbar-logo svg {
+      width: 75%;
+      height: 75%;
+      color: #262626;
+      transition: color 0.5s ease;
+    }
+
+    .navbar-logo:hover svg {
+      color: #f16e3a;
+    }
+
+    /* Page Container */
+    .page {
+      min-height: 100vh;
+      width: 100vw;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Page 1: Introduction with Ingredients Overview */
+    .page-1 {
+      background: linear-gradient(135deg, #F7F6F3 0%, #ffffff 100%);
+      justify-content: center;
+      align-items: center;
+      padding: 60px 24px;
+    }
+
+    .page-1-content {
+      max-width: 1100px;
+      width: 100%;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .page-1 h1 {
+      font-size: clamp(56px, 10vw, 120px);
+      font-weight: 900;
+      color: #f16e3a;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      margin-bottom: 30px;
+      line-height: 0.9;
+    }
+
+    .page-1 .subtitle {
+      font-size: clamp(20px, 4vw, 32px);
+      color: #666;
+      font-weight: 600;
+      margin-bottom: 50px;
+    }
+
+    .description-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      background: white;
+    }
+
+    .description-image {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .description-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 25% center;
+      display: none;
+      transform: scale(1.08);
+      transition: transform 0.3s ease;
+    }
+
+    .description-image img.active {
+      display: block;
+    }
+
+    .description-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .description-image-placeholder::before {
+      content: '📷';
+      font-size: 64px;
+      margin-bottom: 10px;
+      opacity: 0.5;
+    }
+
+    .description-text {
+      display: flex;
+      align-items: center;
+      padding: 60px 50px;
+      background: white;
+    }
+
+    .description-text p {
+      font-size: clamp(14px, 1.8vw, 18px);
+      line-height: 1.7;
+      margin: 0;
+      color: #555;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    @media (max-width: 968px) {
+      .description-section {
+        grid-template-columns: 1fr;
+      }
+
+      .description-image {
+        min-height: 300px;
+        aspect-ratio: 16 / 9;
+      }
+
+      .description-text {
+        padding: 40px 30px;
+      }
+    }
+
+    /* Ingredients Preview Section */
+    .ingredients-preview {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-top: 40px;
+    }
+
+    .ingredients-preview h3 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 900;
+      color: #f16e3a;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      letter-spacing: -0.01em;
+    }
+
+    .ingredients-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      perspective: 1000px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .ingredient-item {
+      position: relative;
+      background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+      padding: 28px 20px;
+      border-radius: 20px;
+      border: 2px solid rgba(241, 110, 58, 0.2);
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      cursor: pointer;
+      animation: fadeInScale 0.8s ease-out backwards;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      flex: 0 1 calc(16.666% - 17px);
+      min-width: 140px;
+      transform-style: preserve-3d;
+      transform: rotateY(-2deg) rotateX(1deg);
+    }
+
+    .ingredient-item:nth-child(1) { 
+      animation-delay: 0.1s;
+      transform: rotateY(2deg) rotateX(-1deg) scale(1.05);
+    }
+    .ingredient-item:nth-child(2) { 
+      animation-delay: 0.15s;
+      transform: rotateY(-1deg) rotateX(1.5deg);
+    }
+    .ingredient-item:nth-child(3) { 
+      animation-delay: 0.2s;
+      transform: rotateY(1.5deg) rotateX(-1deg) scale(0.98);
+    }
+    .ingredient-item:nth-child(4) { 
+      animation-delay: 0.25s;
+      transform: rotateY(-2deg) rotateX(1deg);
+    }
+    .ingredient-item:nth-child(5) { 
+      animation-delay: 0.3s;
+      transform: rotateY(1deg) rotateX(-1.5deg) scale(1.02);
+    }
+    .ingredient-item:nth-child(6) { 
+      animation-delay: 0.35s;
+      transform: rotateY(-1.5deg) rotateX(1deg);
+    }
+    .ingredient-item:nth-child(7) { 
+      animation-delay: 0.4s;
+      transform: rotateY(2deg) rotateX(-1deg) scale(0.97);
+    }
+    .ingredient-item:nth-child(8) { 
+      animation-delay: 0.45s;
+      transform: rotateY(-1deg) rotateX(1.5deg) scale(1.03);
+    }
+    .ingredient-item:nth-child(9) { 
+      animation-delay: 0.5s;
+      transform: rotateY(1.5deg) rotateX(-1deg);
+    }
+    .ingredient-item:nth-child(10) { 
+      animation-delay: 0.55s;
+      transform: rotateY(-2deg) rotateX(1deg) scale(1.01);
+    }
+    .ingredient-item:nth-child(11) { 
+      animation-delay: 0.6s;
+      transform: rotateY(1deg) rotateX(-1.5deg);
+    }
+    .ingredient-item:nth-child(12) { 
+      animation-delay: 0.65s;
+      transform: rotateY(-1.5deg) rotateX(1deg) scale(0.99);
+    }
+    .ingredient-item:nth-child(13) { 
+      animation-delay: 0.7s;
+      transform: rotateY(2deg) rotateX(-1deg) scale(1.04);
+    }
+    .ingredient-item:nth-child(14) { 
+      animation-delay: 0.75s;
+      transform: rotateY(-1deg) rotateX(1.5deg);
+    }
+    .ingredient-item:nth-child(15) { 
+      animation-delay: 0.8s;
+      transform: rotateY(1.5deg) rotateX(-1deg) scale(0.96);
+    }
+    .ingredient-item:nth-child(16) { 
+      animation-delay: 0.85s;
+      transform: rotateY(-2deg) rotateX(1deg) scale(1.02);
+    }
+    .ingredient-item:nth-child(17) { 
+      animation-delay: 0.9s;
+      transform: rotateY(1deg) rotateX(-1.5deg);
+    }
+    .ingredient-item:nth-child(18) { 
+      animation-delay: 0.95s;
+      transform: rotateY(-1.5deg) rotateX(1deg) scale(1.01);
+    }
+
+    .ingredient-item::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(241, 110, 58, 0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .ingredient-item:hover::before {
+      opacity: 1;
+    }
+
+    .ingredient-item:hover {
+      border-color: #f16e3a;
+      background: linear-gradient(135deg, rgba(241, 110, 58, 0.08) 0%, rgba(241, 110, 58, 0.03) 100%);
+      transform: translateY(-12px) scale(1.1) rotateY(0deg) rotateX(0deg) !important;
+      box-shadow: 0 20px 50px rgba(241, 110, 58, 0.35);
+      z-index: 10;
+    }
+
+    .ingredient-item:nth-child(1) { animation-delay: 0.1s; }
+    .ingredient-item:nth-child(2) { animation-delay: 0.15s; }
+    .ingredient-item:nth-child(3) { animation-delay: 0.2s; }
+    .ingredient-item:nth-child(4) { animation-delay: 0.25s; }
+    .ingredient-item:nth-child(5) { animation-delay: 0.3s; }
+    .ingredient-item:nth-child(6) { animation-delay: 0.35s; }
+    .ingredient-item:nth-child(7) { animation-delay: 0.4s; }
+    .ingredient-item:nth-child(8) { animation-delay: 0.45s; }
+    .ingredient-item:nth-child(9) { animation-delay: 0.5s; }
+    .ingredient-item:nth-child(10) { animation-delay: 0.55s; }
+    .ingredient-item:nth-child(11) { animation-delay: 0.6s; }
+    .ingredient-item:nth-child(12) { animation-delay: 0.65s; }
+    .ingredient-item:nth-child(13) { animation-delay: 0.7s; }
+    .ingredient-item:nth-child(14) { animation-delay: 0.75s; }
+    .ingredient-item:nth-child(15) { animation-delay: 0.8s; }
+    .ingredient-item:nth-child(16) { animation-delay: 0.85s; }
+    .ingredient-item:nth-child(17) { animation-delay: 0.9s; }
+    .ingredient-item:nth-child(18) { animation-delay: 0.95s; }
+
+    .ingredient-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    }
+
+    .ingredient-item .ingredient-icon[src] {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      margin: 0 auto 12px;
+      font-size: 0;
+    }
+
+    .ingredient-item:nth-child(odd) .ingredient-icon {
+      animation-delay: 0s;
+    }
+
+    .ingredient-item:nth-child(even) .ingredient-icon {
+      animation-delay: 1.5s;
+    }
+
+    .ingredient-item p {
+      font-size: clamp(12px, 1.6vw, 14px);
+      font-weight: 700;
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ingredient-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(241, 110, 58, 0.3) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+      pointer-events: none;
+    }
+
+    .ingredient-item:hover .ingredient-glow {
+      width: 200px;
+      height: 200px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: #f16e3a;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-indicator::after {
+      content: '↓';
+      font-size: 24px;
+    }
+
+    /* Page 2: Who We Are (Image) + Story */
+    .page-2 {
+      background: #F7F6F3;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 24px;
+      position: relative;
+    }
+
+    .page-2-content {
+      max-width: 1200px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    .page-2 h2 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      color: #f16e3a;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+      letter-spacing: -0.02em;
+    }
+
+    .image-container {
+      position: relative;
+      width: 100vw;
+      margin: 0;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      overflow: hidden;
+      background: transparent;
+      display: block;
+    }
+    
+    .image-container img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .image-placeholder::before {
+      content: '📷';
+      font-size: 64px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .image-placeholder-text {
+      font-size: 16px;
+      color: #bbb;
+      margin-top: 10px;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Story Section */
+    .story-section {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      margin: 50px auto 0;
+    }
+
+    .story-section h3 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 900;
+      color: #f16e3a;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      letter-spacing: -0.01em;
+    }
+
+    .story-section p {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .story-section p:last-child {
+      font-style: italic;
+      color: #777;
+    }
+
+    /* Image Gallery Section */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #e5e5e5;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .gallery-placeholder::before {
+      content: '🖼️';
+      font-size: 40px;
+      margin-right: 10px;
+      opacity: 0.5;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+      transform: scale(1.08);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item img.active {
+      display: block;
+    }
+
+    /* Page 3: Join Us */
+    .page-3 {
+      background: linear-gradient(135deg, #ffffff 0%, #F7F6F3 100%);
+      justify-content: center;
+      align-items: center;
+      padding: 80px 24px;
+      min-height: 100vh;
+    }
+
+    .page-3-content {
+      max-width: 800px;
+      width: 100%;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .page-3 h2 {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 900;
+      color: #f16e3a;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 60px;
+      letter-spacing: -0.02em;
+    }
+
+    .join-form {
+      background: white;
+      padding: 60px 40px;
+      border-radius: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .form-group {
+      margin-bottom: 30px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      background: #fafafa;
+      transition: all 0.3s ease;
+      color: #333;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #f16e3a;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(241, 110, 58, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .file-upload {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .file-upload-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border: 2px dashed #e0e0e0;
+      border-radius: 12px;
+      background: #fafafa;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .file-upload-label:hover {
+      border-color: #f16e3a;
+      background: rgba(241, 110, 58, 0.05);
+      color: #f16e3a;
+    }
+
+    .file-upload-label::before {
+      content: '📎';
+      margin-right: 10px;
+      font-size: 20px;
+    }
+
+    .file-upload input[type="file"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 20px;
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: white;
+      background: #f16e3a;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .submit-button:hover {
+      background: #d94a2e;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(241, 110, 58, 0.3);
+    }
+
+    .submit-button:active {
+      transform: translateY(0);
+    }
+
+    .contact-info {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+    }
+
+    .contact-info p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .contact-info a {
+      color: #f16e3a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(5deg);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    .ingredient-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
+
+    .ingredient-item:hover::after {
+      left: 100%;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-1,
+      .page-2,
+      .page-3 {
+        padding: 40px 20px;
+      }
+
+      .join-form {
+        padding: 40px 24px;
+      }
+
+      .image-container,
+      .story-section {
+        border-radius: 16px;
+      }
+
+      .ingredients-preview {
+        padding: 40px 24px;
+      }
+
+      .ingredients-grid {
+        gap: 16px;
+      }
+
+      .ingredient-item {
+        flex: 0 1 calc(33.333% - 11px);
+        min-width: 120px;
+        padding: 20px 16px;
+      }
+
+      .image-gallery {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .scroll-indicator {
+        bottom: 20px;
+        font-size: 10px;
+      }
+
+      .ingredients-grid {
+        gap: 12px;
+      }
+
+      .ingredient-item {
+        flex: 0 1 calc(50% - 6px);
+        min-width: 100px;
+        padding: 18px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container" id="navbarContainer">
+      <div class="navbar-links">
+        <button onclick="scrollToPage('page-1')">ABOUT US</button>
+        <button onclick="scrollToPage('page-2')">WHO WE ARE</button>
+        <button onclick="scrollToPage('page-3')">JOIN US</button>
+      </div>
+      <div class="navbar-logo" id="navbarLogo" onclick="scrollToPage('page-1')">
+        <svg viewBox="0 0 100 100" fill="currentColor">
+          <g>
+            <rect x="10" y="32" width="80" height="6" rx="3" />
+            <rect x="10" y="62" width="80" height="6" rx="3" />
+            <rect x="64" y="5" width="6" height="90" rx="3" />
+            <path d="M38,5 L38,65 Q38,95 15,95" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" />
+          </g>
+          <g transform="translate(18, 41)">
+            <path d="M2,2 L10,2 A4,4 0 0 1 14,6 L14,14 A4,4 0 0 1 10,18 L2,18 Z" fill="none" stroke="currentColor" stroke-width="1.5" />
+            <line x1="4" y1="8" x2="12" y2="8" stroke="currentColor" stroke-width="0.8" />
+            <line x1="4" y1="12" x2="12" y2="12" stroke="currentColor" stroke-width="0.8" />
+            <line x1="7" y1="4" x2="7" y2="16" stroke="currentColor" stroke-width="0.8" />
+            <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="0.8" />
+          </g>
+          <g transform="translate(45, 41)">
+            <circle cx="9" cy="9" r="9" fill="currentColor" />
+            <path d="M5,11 Q5,15 9,15 Q13,15 13,11 Z" fill="white" />
+            <path d="M5,11 L13,11 Q13,8 9,8 Q5,8 5,11 Z" fill="white" fill-opacity="0.8" />
+          </g>
+          <g transform="translate(73, 40)">
+            <path d="M2,1 L16,5 L14,18 L0,18 Z" fill="none" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="4" cy="10" r="1" />
+            <circle cx="7" cy="12" r="1" />
+            <circle cx="10" cy="11" r="1" />
+            <circle cx="5" cy="14" r="1" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page 1: Introduction with Ingredients Overview -->
+  <section class="page page-1" id="page-1">
+    <div class="page-1-content">
+      <h1>DONDON<br>VAUXHALL</h1>
+      <p class="subtitle">Quality Ingredients</p>
+      
+      <div class="description-section">
+        <div class="description-image">
+          <img src="/pai.png" alt="Dondon Vauxhall" class="active">
+        </div>
+        <div class="description-text">
+          <p>We believe that exceptional food starts with exceptional ingredients. Located in the heart of Vauxhall, London, we bring authentic Asian comfort food crafted with premium, carefully sourced ingredients from around the world.</p>
+        </div>
+      </div>
+
+      <!-- Ingredients Preview -->
+      <div class="ingredients-preview">
+        <h3>Main Ingredients</h3>
+        <div class="ingredients-grid">
+          <div class="ingredient-item">
+            <img src="/butter.png" alt="Butter" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>82% Milk Fat Butter</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/egg.png" alt="Egg" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Free Range Eggs</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/pork.png" alt="Pork" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Iberico Pork</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/beef.png" alt="Beef" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Grass-Fed Beef</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/wholemeal.png" alt="Wholemeal" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Wholemeal</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/flour.png" alt="Flour" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Organic Flour</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/poultry.png" alt="Poultry" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Free Range Poultry</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/milk.png" alt="Milk" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Organic Milk</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/olive-oil.png" alt="Olive Oil" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Olive Oil</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/fermentation.png" alt="Fermentation" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Fermentation</p>
+          </div>
+          <div class="ingredient-item">
+            <span class="ingredient-icon">✨</span>
+            <div class="ingredient-glow"></div>
+            <p>Fortified</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/turmeric.png" alt="Turmeric" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Turmeric</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/rice.png" alt="Rice" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Mixed Grain Rice</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/noodles.png" alt="Noodles" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Soba Noodles</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/sourdough.png" alt="Sourdough" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Sourdough</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/vegetables.png" alt="Vegetables" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Fruits & Vegetables</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/salmon.png" alt="Salmon" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Salmon</p>
+          </div>
+          <div class="ingredient-item">
+            <img src="/seafood.png" alt="Seafood" class="ingredient-icon">
+            <div class="ingredient-glow"></div>
+            <p>Seafood</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">Scroll</div>
+  </section>
+
+  <!-- Page 2: Who We Are (Image) + Story -->
+  <section class="page page-2" id="page-2">
+    <div class="page-2-content">
+      <h2>Who We Are</h2>
+      
+      <!-- Main Image -->
+      <div class="image-container">
+        <img src="/wwa.png" alt="Who We Are">
+      </div>
+
+      <!-- Story Section -->
+      <div class="story-section">
+        <h3>Where We're From</h3>
+        <p>
+          Dondon was born from a passion for authentic Asian comfort food, combining flavors from 
+          Chinese, Japanese, Korean, Malaysian, Indian, and Vietnamese cuisines.
+        </p>
+        <p>
+          Our journey started on Miles Street in Vauxhall, where we bring together premium ingredients 
+          and traditional techniques to create dishes that celebrate the rich culinary heritage of Asia, 
+          right here in London.
+        </p>
+        <p>
+          From our kitchen in Vauxhall, we combine traditional Asian cooking techniques with the finest 
+          ingredients to create dishes that nourish both body and soul.
+        </p>
+      </div>
+
+      <!-- Image Gallery for Ingredients/Process -->
+      <div class="image-gallery">
+        <!-- Gallery Item 1 -->
+        <div class="gallery-item">
+          <img src="/gallery-1.png" alt="Gallery Image 1" class="active">
+        </div>
+        <!-- Gallery Item 2 -->
+        <div class="gallery-item">
+          <img src="/gallery-2.png" alt="Gallery Image 2" class="active">
+        </div>
+        <!-- Gallery Item 3 -->
+        <div class="gallery-item">
+          <img src="/gallery-3.png" alt="Gallery Image 3" class="active">
+        </div>
+        <!-- Gallery Item 4 -->
+        <div class="gallery-item">
+          <img src="/gallery-4.png" alt="Gallery Image 4" class="active">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 3: Join Us -->
+  <section class="page page-3" id="page-3">
+    <div class="page-3-content">
+      <h2>Join Us</h2>
+      <form class="join-form" id="joinForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about yourself and why you'd like to join Dondon..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="cv">CV / Resume</label>
+          <div class="file-upload">
+            <label for="cv" class="file-upload-label">
+              Click to upload your CV or drag and drop
+            </label>
+            <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-button">Submit Application</button>
+
+        <div class="contact-info">
+          <p>Or reach out directly:</p>
+          <p>
+            <a href="mailto:hello@london-don.com">hello@london-don.com</a>
+          </p>
+          <p style="margin-top: 12px; font-size: 13px; color: #999;">
+            6a Miles Street, London, SW8 1GX
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // Smooth scroll to page
+    function scrollToPage(pageId) {
+      const element = document.getElementById(pageId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Navigation bar dynamic effects (matching main site)
+    let scrollPosition = 0;
+    const threshold = 300;
+
+    function updateNavbar() {
+      const ratio = Math.min(scrollPosition / threshold, 1);
+      const blurValue = ratio * 12;
+      const bgOpacity = ratio * 0.4;
+      const paddingValue = 24 - (ratio * 12);
+      const scaleValue = 1 - (ratio * 0.05);
+
+      const navbarContainer = document.getElementById('navbarContainer');
+      const navbarLogo = document.getElementById('navbarLogo');
+
+      if (navbarContainer) {
+        navbarContainer.style.backgroundColor = `rgba(255, 255, 255, ${bgOpacity})`;
+        navbarContainer.style.backdropFilter = `blur(${blurValue}px)`;
+        navbarContainer.style.webkitBackdropFilter = `blur(${blurValue}px)`;
+        navbarContainer.style.paddingTop = `${paddingValue}px`;
+        navbarContainer.style.paddingBottom = `${paddingValue}px`;
+        navbarContainer.style.borderColor = ratio > 0.1 ? 'rgba(0,0,0,0.03)' : 'transparent';
+        navbarContainer.style.boxShadow = ratio > 0.1 ? `0 10px 40px -10px rgba(0,0,0,${ratio * 0.04})` : 'none';
+      }
+
+      if (navbarLogo) {
+        navbarLogo.style.transform = `translateX(-50%) scale(${scaleValue})`;
+      }
+    }
+
+    // Listen to scroll events
+    window.addEventListener('scroll', function() {
+      scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      updateNavbar();
+    });
+
+    // Initialize navbar on load
+    updateNavbar();
+
+    // Form submission handling
+    document.getElementById('joinForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const fileName = document.getElementById('cv').files[0]?.name;
+      
+      // Here you would typically send the data to a server
+      // For now, we'll just show an alert
+      alert('Thank you for your application! We will review your submission and get back to you soon.');
+      
+      // Reset form
+      this.reset();
+      document.querySelector('.file-upload-label').innerHTML = '📎 Click to upload your CV or drag and drop';
+    });
+
+    // File upload label update
+    document.getElementById('cv').addEventListener('change', function(e) {
+      const label = document.querySelector('.file-upload-label');
+      if (this.files && this.files[0]) {
+        label.innerHTML = '📎 ' + this.files[0].name;
+      } else {
+        label.innerHTML = '📎 Click to upload your CV or drag and drop';
+      }
+    });
+  </script>
+</body>
+</html>
