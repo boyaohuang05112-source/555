@@ -89,12 +89,27 @@
     }
 
     .who-we-are h1 {
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 300;
-      letter-spacing: -0.04em;
-      margin-bottom: 16px;
-      color: #1A1A1A;
+      font-size: clamp(42px, 7vw, 64px);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+      color: #D97706;
       line-height: 1.1;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      display: inline-block;
+    }
+
+    .who-we-are h1::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #D97706;
+      opacity: 0.6;
     }
 
     .who-we-are p {
@@ -113,6 +128,29 @@
       gap: 8px;
       margin: 100px 0 140px;
       padding: 20px 0;
+      position: relative;
+    }
+
+    .image-gallery::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: #D97706;
+      opacity: 0.4;
+    }
+
+    .image-gallery::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      right: 0;
+      width: 60px;
+      height: 4px;
+      background: #D97706;
+      opacity: 0.4;
     }
 
     /* Individual gallery items with varied sizes and positions */
@@ -126,6 +164,30 @@
     .gallery-item:hover {
       transform: translateY(-4px);
       z-index: 10;
+    }
+
+    .gallery-item:hover::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 12px;
+      height: 12px;
+      background: #D97706;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+      }
     }
 
     .gallery-item img {
@@ -317,6 +379,19 @@
       margin-bottom: 20px;
       color: #1A1A1A;
       line-height: 1.1;
+      position: relative;
+      display: inline-block;
+    }
+
+    .where-we-are-from h2::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 24px;
+      background: #D97706;
     }
 
     .where-we-are-from p {
@@ -347,6 +422,19 @@
       margin-bottom: 24px;
       color: #1A1A1A;
       line-height: 1.1;
+      position: relative;
+      display: inline-block;
+    }
+
+    .join-us h2::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 24px;
+      background: #D97706;
     }
 
     .join-us p {
@@ -363,7 +451,18 @@
       max-width: 550px;
       margin: 0 0 80px;
       padding: 60px 0 0;
-      border-top: 1px solid rgba(26, 26, 26, 0.08);
+      border-top: 1px solid rgba(217, 119, 6, 0.2);
+      position: relative;
+    }
+
+    .application-form::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 120px;
+      height: 1px;
+      background: #D97706;
     }
 
     .form-group {
@@ -398,7 +497,7 @@
     .form-group input[type="text"]:focus,
     .form-group input[type="email"]:focus,
     .form-group textarea:focus {
-      border-bottom-color: #1A1A1A;
+      border-bottom-color: #D97706;
     }
 
     .form-group textarea {
@@ -436,7 +535,7 @@
     }
 
     .file-upload-label:hover {
-      border-bottom-color: #1A1A1A;
+      border-bottom-color: #D97706;
       color: #1A1A1A;
     }
 
@@ -445,20 +544,36 @@
       width: 100%;
       padding: 14px 0;
       font-size: clamp(15px, 2vw, 17px);
-      font-weight: 300;
+      font-weight: 400;
       font-family: 'Inter', sans-serif;
-      color: #1A1A1A;
+      color: #D97706;
       background: transparent;
       border: none;
-      border-bottom: 1.5px solid #1A1A1A;
+      border-bottom: 1.5px solid #D97706;
       cursor: pointer;
       transition: all 0.3s ease;
       letter-spacing: -0.01em;
       margin-top: 8px;
+      position: relative;
     }
 
     .submit-button:hover {
-      opacity: 0.6;
+      color: #B86205;
+      border-bottom-color: #B86205;
+    }
+
+    .submit-button::after {
+      content: '→';
+      position: absolute;
+      right: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateX(-10px);
+    }
+
+    .submit-button:hover::after {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     /* Contact Info */
@@ -701,7 +816,7 @@
   <main class="main-content">
     <!-- Who We Are - Minimal -->
     <section class="who-we-are">
-      <h1>Who We Are</h1>
+      <h1>DONDON<br>VAUXHALL</h1>
       <p>We believe that exceptional food starts with exceptional ingredients. Located in the heart of Vauxhall, London, we bring authentic Asian comfort food crafted with premium, carefully sourced ingredients from around the world.</p>
     </section>
 
