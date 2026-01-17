@@ -414,6 +414,111 @@
       margin-bottom: 0;
     }
 
+    /* Our Cuisines Section */
+    .our-cuisines-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px auto 0;
+      max-width: 1000px;
+      position: relative;
+    }
+
+    .our-cuisines {
+      text-align: center;
+      padding: 60px 40px;
+      max-width: 900px;
+      flex: 1;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      position: relative;
+    }
+
+    .our-cuisines h3 {
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 700;
+      color: #FF6B35;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 12px;
+    }
+
+    .our-cuisines .subtitle {
+      font-size: clamp(15px, 2vw, 17px);
+      font-weight: 300;
+      color: #1A1A1A;
+      margin-bottom: 32px;
+    }
+
+    .cuisines-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .cuisine-button {
+      padding: 10px 24px;
+      font-size: clamp(13px, 1.5vw, 15px);
+      font-weight: 500;
+      color: #FF6B35;
+      background: rgba(255, 245, 238, 0.8);
+      border: 1.5px solid rgba(255, 107, 53, 0.3);
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .cuisine-button:hover {
+      background: rgba(255, 107, 53, 0.1);
+      border-color: #FF6B35;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(255, 107, 53, 0.2);
+    }
+
+    .cuisines-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 107, 53, 0.3);
+      background: white;
+      color: #FF6B35;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      z-index: 10;
+    }
+
+    .cuisines-nav:hover {
+      border-color: #FF6B35;
+      background: rgba(255, 107, 53, 0.05);
+      box-shadow: 0 4px 8px rgba(255, 107, 53, 0.2);
+    }
+
+    @media (max-width: 1024px) {
+      .cuisines-nav {
+        display: none;
+      }
+
+      .our-cuisines-container {
+        gap: 0;
+      }
+    }
+
     /* Join Us Section - Minimal */
     .join-us {
       text-align: center;
@@ -858,9 +963,26 @@
     <!-- Where We're From -->
     <section class="where-we-are-from">
       <h2>Where We're From</h2>
-      <p>Dondon was born from a passion for authentic Asian comfort food, combining flavors from Chinese, Japanese, Korean, Malaysian, Indian, and Vietnamese cuisines.</p>
       <p>Our journey started on Miles Street in Vauxhall, where we bring together premium ingredients and traditional techniques to create dishes that celebrate the rich culinary heritage of Asia, right here in London.</p>
       <p>From our kitchen in Vauxhall, we combine traditional Asian cooking techniques with the finest ingredients to create dishes that nourish both body and soul.</p>
+      
+      <!-- Our Cuisines -->
+      <div class="our-cuisines-container">
+        <button class="cuisines-nav prev">‹</button>
+        <div class="our-cuisines">
+          <h3>OUR CUISINES</h3>
+          <p class="subtitle">Authentic flavors from across Asia</p>
+          <div class="cuisines-buttons">
+            <button class="cuisine-button">CHINESE</button>
+            <button class="cuisine-button">JAPANESE</button>
+            <button class="cuisine-button">KOREAN</button>
+            <button class="cuisine-button">MALAYSIA</button>
+            <button class="cuisine-button">INDIAN</button>
+            <button class="cuisine-button">VIETNAMESE</button>
+          </div>
+        </div>
+        <button class="cuisines-nav next">›</button>
+      </div>
     </section>
 
     <!-- Join Us -->
