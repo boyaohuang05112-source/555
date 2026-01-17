@@ -491,6 +491,74 @@
     @media (max-width: 1024px) {
       .our-cuisines-container {
         gap: 0;
+        max-width: 100%;
+        margin: 40px 20px 0;
+      }
+
+      .our-cuisines {
+        padding: 24px 20px;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .our-cuisines-container {
+        margin: 30px 16px 0;
+      }
+
+      .our-cuisines {
+        padding: 20px 16px;
+        border-radius: 8px;
+      }
+
+      .our-cuisines h3 {
+        font-size: clamp(16px, 4vw, 20px);
+        margin-bottom: 4px;
+      }
+
+      .our-cuisines .subtitle {
+        font-size: clamp(11px, 2.5vw, 13px);
+        margin-bottom: 14px;
+      }
+
+      .cuisines-buttons {
+        gap: 4px;
+        justify-content: flex-start;
+        padding: 0 4px;
+      }
+
+      .cuisine-button {
+        padding: 5px 12px;
+        font-size: clamp(9px, 2vw, 11px);
+        flex-shrink: 0;
+      }
+
+      .where-we-are-from {
+        padding: 80px 0 0;
+      }
+
+      .where-we-are-from p {
+        font-size: clamp(15px, 2vw, 18px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .our-cuisines-container {
+        margin: 24px 12px 0;
+      }
+
+      .our-cuisines {
+        padding: 18px 14px;
+      }
+
+      .cuisines-buttons {
+        gap: 3px;
+        padding: 0 2px;
+      }
+
+      .cuisine-button {
+        padding: 4px 10px;
+        font-size: clamp(8px, 1.8vw, 10px);
       }
     }
 
