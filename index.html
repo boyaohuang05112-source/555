@@ -420,14 +420,14 @@
       align-items: center;
       justify-content: center;
       margin: 40px auto 0;
-      max-width: 800px;
+      max-width: 700px;
       position: relative;
     }
 
     .our-cuisines {
       text-align: center;
-      padding: 40px 30px;
-      max-width: 750px;
+      padding: 30px 24px;
+      max-width: 650px;
       flex: 1;
       background: rgba(255, 255, 255, 0.9);
       border-radius: 12px;
@@ -436,33 +436,39 @@
     }
 
     .our-cuisines h3 {
-      font-size: clamp(22px, 3.2vw, 28px);
+      font-size: clamp(18px, 2.8vw, 24px);
       font-weight: 700;
       color: #FF6B35;
       text-transform: uppercase;
       letter-spacing: 0.03em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .our-cuisines .subtitle {
-      font-size: clamp(13px, 1.8vw, 15px);
+      font-size: clamp(12px, 1.6vw, 14px);
       font-weight: 300;
       color: #1A1A1A;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .cuisines-buttons {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: center;
-      gap: 10px;
+      gap: 6px;
       margin-bottom: 0;
       position: relative;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .cuisines-buttons::-webkit-scrollbar {
+      display: none;
     }
 
     .cuisine-button {
-      padding: 8px 20px;
-      font-size: clamp(11px, 1.3vw, 13px);
+      padding: 6px 14px;
+      font-size: clamp(10px, 1.1vw, 12px);
       font-weight: 500;
       color: #FF6B35;
       background: rgba(255, 245, 238, 0.8);
