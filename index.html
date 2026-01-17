@@ -302,6 +302,36 @@
       }
     }
 
+    /* Where We're From Section - Minimal */
+    .where-we-are-from {
+      text-align: left;
+      padding: 100px 0 0;
+      max-width: 680px;
+      margin-left: 0;
+    }
+
+    .where-we-are-from h2 {
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      color: #1A1A1A;
+      line-height: 1.1;
+    }
+
+    .where-we-are-from p {
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 300;
+      line-height: 1.7;
+      color: #4A4A4A;
+      margin-bottom: 16px;
+      max-width: 600px;
+    }
+
+    .where-we-are-from p:last-of-type {
+      margin-bottom: 0;
+    }
+
     /* Join Us Section - Minimal */
     .join-us {
       text-align: left;
@@ -556,6 +586,10 @@
         margin-left: -10px;
       }
 
+      .where-we-are-from {
+        padding: 80px 0 0;
+      }
+
       .join-us {
         padding: 80px 0 0;
       }
@@ -617,6 +651,10 @@
     .gallery-item:nth-child(4) { animation-delay: 0.25s; }
     .gallery-item:nth-child(5) { animation-delay: 0.3s; }
     .gallery-item:nth-child(6) { animation-delay: 0.2s; }
+
+    .where-we-are-from {
+      animation: fadeIn 0.8s ease-out 0.2s both;
+    }
 
     .join-us {
       animation: fadeIn 1s ease-out 0.4s both;
@@ -687,6 +725,14 @@
       <div class="gallery-item">
         <img src="./fruit-texture.png" alt="Fruit Texture">
       </div>
+    </section>
+
+    <!-- Where We're From -->
+    <section class="where-we-are-from">
+      <h2>Where We're From</h2>
+      <p>Dondon was born from a passion for authentic Asian comfort food, combining flavors from Chinese, Japanese, Korean, Malaysian, Indian, and Vietnamese cuisines.</p>
+      <p>Our journey started on Miles Street in Vauxhall, where we bring together premium ingredients and traditional techniques to create dishes that celebrate the rich culinary heritage of Asia, right here in London.</p>
+      <p>From our kitchen in Vauxhall, we combine traditional Asian cooking techniques with the finest ingredients to create dishes that nourish both body and soul.</p>
     </section>
 
     <!-- Join Us -->
