@@ -270,7 +270,7 @@
     .join-us {
       text-align: center;
       padding: 120px 0 140px;
-      max-width: 550px;
+      max-width: 650px;
       margin: 0 auto;
     }
 
@@ -287,7 +287,7 @@
       font-weight: 300;
       line-height: 1.85;
       color: #5A5A5A;
-      margin-bottom: 36px;
+      margin-bottom: 48px;
     }
 
     .contact-info {
@@ -295,6 +295,7 @@
       font-weight: 300;
       color: #2C2C2C;
       line-height: 2.2;
+      margin-bottom: 60px;
     }
 
     .contact-info a {
@@ -307,6 +308,123 @@
 
     .contact-info a:hover {
       border-bottom-color: #2C2C2C;
+    }
+
+    /* Application Form */
+    .application-form {
+      text-align: left;
+      max-width: 550px;
+      margin: 0 auto;
+      padding: 50px 0 0;
+      border-top: 1px solid rgba(44, 44, 44, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 32px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: clamp(13px, 1.8vw, 15px);
+      font-weight: 400;
+      color: #2C2C2C;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: clamp(14px, 1.9vw, 16px);
+      font-weight: 300;
+      font-family: 'Inter', sans-serif;
+      color: #2C2C2C;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(44, 44, 44, 0.15);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group textarea:focus {
+      border-color: #2C2C2C;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    /* File Upload */
+    .file-upload {
+      position: relative;
+      width: 100%;
+    }
+
+    .file-upload input[type="file"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .file-upload-label {
+      display: block;
+      padding: 14px 16px;
+      font-size: clamp(14px, 1.9vw, 16px);
+      font-weight: 300;
+      color: #5A5A5A;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px dashed rgba(44, 44, 44, 0.25);
+      border-radius: 2px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .file-upload-label:hover {
+      border-color: #2C2C2C;
+      background: rgba(255, 255, 255, 0.8);
+      color: #2C2C2C;
+    }
+
+    .file-upload input[type="file"]:focus + .file-upload-label {
+      border-color: #2C2C2C;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Submit Button */
+    .submit-button {
+      width: 100%;
+      padding: 16px 24px;
+      font-size: clamp(14px, 1.9vw, 16px);
+      font-weight: 400;
+      font-family: 'Inter', sans-serif;
+      color: #2C2C2C;
+      background: transparent;
+      border: 1.5px solid #2C2C2C;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: -0.01em;
+      margin-top: 8px;
+    }
+
+    .submit-button:hover {
+      background: #2C2C2C;
+      color: #FAFAFA;
+    }
+
+    .submit-button:active {
+      transform: scale(0.98);
     }
 
     /* Responsive */
@@ -432,7 +550,63 @@
         <div><a href="mailto:hello@london-don.com">hello@london-don.com</a></div>
         <div style="margin-top: 12px;">6a Miles Street, London, SW8 1GX</div>
       </div>
+
+      <!-- Application Form -->
+      <form class="application-form" id="applicationForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about yourself and why you'd like to join Dondon..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="cv">CV / Resume</label>
+          <div class="file-upload">
+            <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+            <label for="cv" class="file-upload-label">Click to upload your CV or drag and drop</label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-button">Submit Application</button>
+      </form>
     </section>
   </main>
+
+  <script>
+    // Form submission handling
+    document.getElementById('applicationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const fileName = document.getElementById('cv').files[0]?.name;
+      
+      // Here you would typically send the data to a server
+      // For now, we'll just show an alert
+      alert('Thank you for your application! We will review your submission and get back to you soon.');
+      
+      // Reset form
+      this.reset();
+      document.querySelector('.file-upload-label').textContent = 'Click to upload your CV or drag and drop';
+    });
+
+    // File upload label update
+    document.getElementById('cv').addEventListener('change', function(e) {
+      const label = document.querySelector('.file-upload-label');
+      if (this.files && this.files[0]) {
+        label.textContent = '📎 ' + this.files[0].name;
+      } else {
+        label.textContent = 'Click to upload your CV or drag and drop';
+      }
+    });
+  </script>
 </body>
 </html>
