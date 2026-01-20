@@ -134,6 +134,7 @@
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
+      overflow: visible;
     }
 
     .image-gallery::before {
@@ -204,6 +205,12 @@
       object-fit: cover;
       display: block;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 200px;
+    }
+
+    .gallery-item img[src=""],
+    .gallery-item img:not([src]) {
+      background: #E8E8E8;
     }
 
     .gallery-item:hover img {
@@ -263,6 +270,7 @@
       max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
+      overflow: visible;
     }
 
     .gallery-item-2 {
@@ -298,6 +306,12 @@
       object-fit: cover;
       display: block;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 150px;
+    }
+
+    .gallery-item-2 img[src=""],
+    .gallery-item-2 img:not([src]) {
+      background: #E8E8E8;
     }
 
     .gallery-item-2:hover img {
@@ -412,11 +426,13 @@
       .gallery-item-2:nth-child(5) {
         grid-column: 1;
         grid-row: 3;
+        transform: scale(0.85);
       }
 
       .gallery-item-2:nth-child(6) {
         grid-column: 2;
         grid-row: 3;
+        transform: scale(0.85);
       }
     }
 
@@ -436,8 +452,14 @@
       .gallery-item-2:nth-child(2) { grid-row: 2; }
       .gallery-item-2:nth-child(3) { grid-row: 3; }
       .gallery-item-2:nth-child(4) { grid-row: 4; }
-      .gallery-item-2:nth-child(5) { grid-row: 5; }
-      .gallery-item-2:nth-child(6) { grid-row: 6; }
+      .gallery-item-2:nth-child(5) {
+        grid-row: 5;
+        transform: scale(0.85);
+      }
+      .gallery-item-2:nth-child(6) {
+        grid-row: 6;
+        transform: scale(0.85);
+      }
     }
 
     /* Texture placeholders with subtle variations */
@@ -1229,11 +1251,15 @@
       .gallery-item:nth-child(5) {
         grid-column: 1;
         grid-row: 3;
+        transform: none;
+        z-index: 1;
       }
 
       .gallery-item:nth-child(6) {
         grid-column: 2;
         grid-row: 3;
+        transform: none;
+        z-index: 1;
       }
 
       .join-us {
@@ -1261,8 +1287,16 @@
       .gallery-item:nth-child(2) { grid-row: 2; }
       .gallery-item:nth-child(3) { grid-row: 3; }
       .gallery-item:nth-child(4) { grid-row: 4; }
-      .gallery-item:nth-child(5) { grid-row: 5; }
-      .gallery-item:nth-child(6) { grid-row: 6; }
+      .gallery-item:nth-child(5) {
+        grid-row: 5;
+        transform: none;
+        z-index: 1;
+      }
+      .gallery-item:nth-child(6) {
+        grid-row: 6;
+        transform: none;
+        z-index: 1;
+      }
     }
 
     /* Fade in animation */
