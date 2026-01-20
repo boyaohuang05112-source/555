@@ -164,10 +164,17 @@
     /* Individual gallery items */
     .gallery-item {
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       background: #E8E8E8;
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       aspect-ratio: 1;
+      min-height: 200px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-item {
+        overflow: hidden;
+      }
     }
 
     .gallery-item:hover {
