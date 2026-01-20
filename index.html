@@ -1350,6 +1350,24 @@
         label.textContent = 'Click to upload your CV or drag and drop';
       }
     });
+
+    // Menu Guess Game Form
+    document.getElementById('guessForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const name = formData.get('guess-name');
+      const foodName = formData.get('food-name');
+      const email = formData.get('guess-email');
+      
+      // Here you would typically send the data to a server
+      console.log('Guess submitted:', { name, foodName, email });
+      
+      alert('🎉 Thank you for your guess! We\'ll contact you if you\'re right. Good luck!');
+      
+      // Reset form
+      this.reset();
+    });
   </script>
 </body>
 </html>
