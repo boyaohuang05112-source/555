@@ -1180,6 +1180,16 @@
         margin: 60px 0 80px;
       }
 
+      .gallery-item {
+        transform: scale(1);
+        min-height: 200px;
+      }
+
+      .gallery-item:nth-child(n) {
+        transform: scale(1);
+        z-index: 1;
+      }
+
       .gallery-item:nth-child(1) {
         grid-column: 1;
         grid-row: 1;
@@ -1203,14 +1213,14 @@
       .gallery-item:nth-child(5) {
         grid-column: 1;
         grid-row: 3;
-        transform: none;
+        transform: scale(1);
         z-index: 1;
       }
 
       .gallery-item:nth-child(6) {
         grid-column: 2;
         grid-row: 3;
-        transform: none;
+        transform: scale(1);
         z-index: 1;
       }
 
@@ -1235,18 +1245,29 @@
         gap: 12px;
       }
 
+      .gallery-item {
+        transform: scale(1);
+        min-height: 200px;
+      }
+
+      .gallery-item:nth-child(n) {
+        grid-column: 1;
+        transform: scale(1);
+        z-index: 1;
+      }
+
       .gallery-item:nth-child(1) { grid-row: 1; }
       .gallery-item:nth-child(2) { grid-row: 2; }
       .gallery-item:nth-child(3) { grid-row: 3; }
       .gallery-item:nth-child(4) { grid-row: 4; }
       .gallery-item:nth-child(5) {
         grid-row: 5;
-        transform: none;
+        transform: scale(1);
         z-index: 1;
       }
       .gallery-item:nth-child(6) {
         grid-row: 6;
-        transform: none;
+        transform: scale(1);
         z-index: 1;
       }
     }
@@ -1331,22 +1352,22 @@
     <section class="image-gallery">
       <div class="gallery-item">
         <img src="./milk-texture.png" alt="Milk Texture">
-      </div>
+          </div>
       <div class="gallery-item">
         <img src="./flour-texture.png" alt="Flour Texture">
-      </div>
+          </div>
         <div class="gallery-item">
         <img src="./wheat-texture.png" alt="Wheat Texture">
-        </div>
+          </div>
         <div class="gallery-item">
         <img src="./bread-texture.png" alt="Bread Texture">
-        </div>
+          </div>
         <div class="gallery-item">
         <img src="./beef-texture.png" alt="Beef Texture">
-        </div>
+          </div>
         <div class="gallery-item">
         <img src="./fruit-texture.png" alt="Fruit Texture">
-    </div>
+          </div>
   </section>
 
     <!-- Second Image Gallery - Smaller, Interesting Layout -->
@@ -1359,17 +1380,17 @@
       </div>
       <div class="gallery-item-2">
         <img src="./gallery-2-3.png" alt="Gallery Image 3">
-      </div>
+        </div>
       <div class="gallery-item-2">
         <img src="./gallery-2-4.png" alt="Gallery Image 4">
-      </div>
+        </div>
       <div class="gallery-item-2">
         <img src="./gallery-2-5.png" alt="Gallery Image 5">
-      </div>
+        </div>
       <div class="gallery-item-2">
         <img src="./gallery-2-6.png" alt="Gallery Image 6">
-      </div>
-    </section>
+    </div>
+  </section>
 
     <!-- Join Us -->
     <section class="join-us">
